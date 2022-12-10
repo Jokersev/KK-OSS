@@ -1,8 +1,8 @@
-%% KCDI_ERµü´úÖØ½¨Íê±ÏºóÔÙÈ¥µôÍ¸¾µ×÷ÓÃ,·òÀÊºÌ·ÑÑÜÉä¸µÀïÒ¶±ä»»£¬ossµÄÊµÑéÖµºÍER¶¼ÊÇÏÈ¶ÔÑùÆ·½øĞĞ¹ı²ÉÑùºóµÄKCDI
+%% KCDI_ERè¿­ä»£é‡å»ºå®Œæ¯•åå†å»æ‰é€é•œä½œç”¨,å¤«æœ—ç¦¾è´¹è¡å°„å‚…é‡Œå¶å˜æ¢ï¼Œossçš„å®éªŒå€¼å’ŒERéƒ½æ˜¯å…ˆå¯¹æ ·å“è¿›è¡Œè¿‡é‡‡æ ·åçš„KCDI
 %% 
 close all
 clear
-%% µ¼ÈëKCDIÊµÑéÊı¾İ
+%% å¯¼å…¥KCDIå®éªŒæ•°æ®
 % load('F:\users\wy\KCDI_ER\IR data\KCDI_CCDsample_intensity_IR.mat')
 % load('F:\users\wy\KCDI_ER\IR data\KCDI_CCDsample_angle_IR.mat')
 % load('F:\users\wy\KCDI_ER\IR data\KCDI_CCDlens_intensity_IR.mat')
@@ -20,34 +20,34 @@ ph_p_orig = Angle;
 I_lens = lens_Intensity;
 ph_p_orig_lens = lens_Angle;
 
-%% ÏÔÊ¾Ô­Êı¾İ
+%% æ˜¾ç¤ºåŸæ•°æ®
 % figure
 % subplot(2,2,1);imagesc(I);axis square;colormap('gray');
 % subplot(2,2,2);imagesc(ph_p_orig);axis square;
 % subplot(2,2,3);imagesc(I_lens);axis square;colormap('gray');
 % subplot(2,2,4);imagesc(ph_p_orig_lens);axis square;
-%% Ìí¼ÓÔëÉù
+%% æ·»åŠ å™ªå£°
 figure('color',[1 1 1]);imagesc(I);axis square;colormap('gray');
-% export_fig(gcf,'-eps','-r300','-painters','./Î´Ìí¼ÓÔëÉù.eps');
-% figure;imagesc(I_lens);axis square;colormap('gray');title('Ìí¼ÓÔëÉùÇ°')
+% export_fig(gcf,'-eps','-r300','-painters','./æœªæ·»åŠ å™ªå£°.eps');
+% figure;imagesc(I_lens);axis square;colormap('gray');title('æ·»åŠ å™ªå£°å‰')
 [M,N] = size(I);
-lam = 0.1; %Ìí¼Ó5%=0.05ÔëÉù
-r = poissrnd(lam,[M,N]); %Ìí¼Ó²´ËÉÔëÉù
+lam = 0.1; %æ·»åŠ 5%=0.05å™ªå£°
+r = poissrnd(lam,[M,N]); %æ·»åŠ æ³Šæ¾å™ªå£°
 I = I+I.*r;
 I_lens = I_lens+I_lens.*r;
 figure('color',[1 1 1]);imagesc(I);axis square;colormap('gray');
-% export_fig(gcf,'-eps','-r300','-painters','./Ìí¼Ó10%ÔëÉùºó.eps');
-% figure;imagesc(I_lens);axis square;colormap('gray');title('Í¸¾µÌí¼ÓÔëÉùºó')
+% export_fig(gcf,'-eps','-r300','-painters','./æ·»åŠ 10%å™ªå£°å.eps');
+% figure;imagesc(I_lens);axis square;colormap('gray');title('é€é•œæ·»åŠ å™ªå£°å')
 
 
-%% ÉèÖÃ²ÎÊı
+%% è®¾ç½®å‚æ•°
 L1=28672e-6; 
 M=2048;       %number of samples
 lambda=632e-9;     %wavelength(m)
-z1=0.601;             %Í¨¹ıÍ¸¾µºó·ÆÄù¶û´«²¥601mmµ½´ïÑùÆ·
-z2=0.463;             %µ½ccdµÄ·ÆÄù¶û´«Êä¾àÀë463mm
-zf=0.474;           %¹âÊø»ã¾ÛµÄ¾àÀë£¨½¹¾à£©474mm
-wl=400;    %³£ÓÃÖµÍ¸¾µ¿Ú¾¶(ÏñËØÎªµ¥Î»)
+z1=0.601;             %é€šè¿‡é€é•œåè²æ¶…å°”ä¼ æ’­601mmåˆ°è¾¾æ ·å“
+z2=0.463;             %åˆ°ccdçš„è²æ¶…å°”ä¼ è¾“è·ç¦»463mm
+zf=0.474;           %å…‰æŸæ±‡èšçš„è·ç¦»ï¼ˆç„¦è·ï¼‰474mm
+wl=400;    %å¸¸ç”¨å€¼é€é•œå£å¾„(åƒç´ ä¸ºå•ä½)
 %%
 dx1=L1/M;    %src sample interval
 x1=-L1/2:dx1:L1/2-dx1;    %src coords
@@ -57,33 +57,33 @@ k=2*pi/lambda;      %wavenumber
 [x_array,y_array] = meshgrid(1:M,1:M); 
 x_array = x_array - floor(max(x_array(:))/2+1); % center of image to be zero 
 y_array = y_array - floor(max(y_array(:))/2+1); % center of image to be zero 
-%¼ÆËãÍ¸¾µ´«²¥z1¾àÀëµÄÑÜÉä³¡
+%è®¡ç®—é€é•œä¼ æ’­z1è·ç¦»çš„è¡å°„åœº
 u1=(x_array./wl).^2+(y_array./wl).^2 <= 1; 
 uout=u1.*exp(-1i*k/(2*zf)*(X1.^2+Y1.^2));
 ulens_1=propTF(uout,L1,lambda,z1); 
-%¼ÆËãÍ¸¾µ·òÀÊºÌ·Ñ´«²¥µ½CCDµÄÑÜÉä³¡
+%è®¡ç®—é€é•œå¤«æœ—ç¦¾è´¹ä¼ æ’­åˆ°CCDçš„è¡å°„åœº
 ulens_2=fftshift(fft2(ulens_1)); 
 % figure
 % imagesc(x1,y1,I)
 % title('CCD intensity')
 % axis square;xlabel('x/m');ylabel('y/m');colormap('gray')
-%% ERËã·¨
-%% ³õÊ¼ÎïÌå¹À¼ÆÖµ
+%% ERç®—æ³•
+%% åˆå§‹ç‰©ä½“ä¼°è®¡å€¼
 siza = size(I);                                     
 am_p = sqrt(I);
 am_p_lens = sqrt(I_lens);
-%Í¸¾µµÄ³õÊ¼ÏàÎ»
-ph_p_lens = rand(siza)*2*pi;% rand(N(1),N(1))*pi; %Ëæ»úÏàÎ»
-% ph_p_lens = ph_p_orig_lens; %Í¸¾µµÄÔ­Í¼ÏàÎ»
-% ph_p_lens =imnoise(ph_p_orig_lens,'salt & Pepper');  %Ô­Í¼ÏàÎ»¼Ó½·ÑÎÔëÉù
-% ph_p_lens =imnoise(ph_p_orig_lens,'gaussian',0.4);  %Ô­Í¼ÏàÎ»¼Ó¸ßË¹ÔëÉù 
-% ph_p_lens =imnoise(ph_p_orig_lens,'poisson');  %Ô­Í¼ÏàÎ»¼Ó²´ËÉÔëÉù 
-%ÎïÌåµÄ³õÊ¼ÏàÎ»
-ph_p = rand(siza)*2*pi;% rand(N(1),N(1))*pi; %Ëæ»úÏàÎ»
-% ph_p = ph_p_orig; %ÎïÌåµÄÔ­Í¼ÏàÎ»
-% ph_p = imnoise(ph_p_orig,'salt & Pepper');  %Ô­Í¼ÏàÎ»¼Ó½·ÑÎÔëÉù
-% ph_p = imnoise(ph_p_orig,'gaussian',0.4);  %Ô­Í¼ÏàÎ»¼Ó¸ßË¹ÔëÉù 
-% ph_p = imnoise(ph_p_orig,'poisson');  %Ô­Í¼ÏàÎ»¼Ó²´ËÉÔëÉù 
+%é€é•œçš„åˆå§‹ç›¸ä½
+ph_p_lens = rand(siza)*2*pi;% rand(N(1),N(1))*pi; %éšæœºç›¸ä½
+% ph_p_lens = ph_p_orig_lens; %é€é•œçš„åŸå›¾ç›¸ä½
+% ph_p_lens =imnoise(ph_p_orig_lens,'salt & Pepper');  %åŸå›¾ç›¸ä½åŠ æ¤’ç›å™ªå£°
+% ph_p_lens =imnoise(ph_p_orig_lens,'gaussian',0.4);  %åŸå›¾ç›¸ä½åŠ é«˜æ–¯å™ªå£° 
+% ph_p_lens =imnoise(ph_p_orig_lens,'poisson');  %åŸå›¾ç›¸ä½åŠ æ³Šæ¾å™ªå£° 
+%ç‰©ä½“çš„åˆå§‹ç›¸ä½
+ph_p = rand(siza)*2*pi;% rand(N(1),N(1))*pi; %éšæœºç›¸ä½
+% ph_p = ph_p_orig; %ç‰©ä½“çš„åŸå›¾ç›¸ä½
+% ph_p = imnoise(ph_p_orig,'salt & Pepper');  %åŸå›¾ç›¸ä½åŠ æ¤’ç›å™ªå£°
+% ph_p = imnoise(ph_p_orig,'gaussian',0.4);  %åŸå›¾ç›¸ä½åŠ é«˜æ–¯å™ªå£° 
+% ph_p = imnoise(ph_p_orig,'poisson');  %åŸå›¾ç›¸ä½åŠ æ³Šæ¾å™ªå£° 
 if_kk_lens = 0;
 if_kk = 0;
 tic;
@@ -103,21 +103,21 @@ tic;
 % imagesc(x1,y1,abs(initial_diffraction))
 % title('initial guess object diffraction','fontsize',18);axis square;colormap('gray');xlabel('x/m');ylabel('y/m');
 % figure('color',[1 1 1]);plot(x1,unwrap(ph_p_orig(M/2+10,:)));xlabel('x(m)');ylabel('y(rad)');axis square;
-% export_fig(gcf,'-eps','-r300','-painters','./Ô­Í¼ÏàÎ».eps');
+% export_fig(gcf,'-eps','-r300','-painters','./åŸå›¾ç›¸ä½.eps');
 % figure('color',[1 1 1]);plot(x1,unwrap(phase(initial_diffraction(M/2+10,:))));xlabel('x(m)');ylabel('y(rad)');axis square;
-% export_fig(gcf,'-eps','-r300','-painters','./kkÏàÎ».eps');
+% export_fig(gcf,'-eps','-r300','-painters','./kkç›¸ä½.eps');
 
-%% ¼ÆËãÏàËÆ¶È
+%% è®¡ç®—ç›¸ä¼¼åº¦
 % image1 = ph_p;
 % image2 = ph_p_orig;
 % glcms1 = graycomatrix(image1);
 % glcms2 = graycomatrix(image2);
 % similarity = cosin_similarity(glcms1,glcms2);
 % cos1 = acos(similarity);
-% angle = cos1*180/pi; %½Ç¶È
-% fprintf('ÓàÏÒÖµ = %f\n',similarity)
-% fprintf('ÓàÏÒ½Ç¶È = %f¡ã\n',angle) 
-%% ³õÊ¼ÎïÌåÁãÌî³äºÍÖ§³ÖÓò
+% angle = cos1*180/pi; %è§’åº¦
+% fprintf('ä½™å¼¦å€¼ = %f\n',similarity)
+% fprintf('ä½™å¼¦è§’åº¦ = %fÂ°\n',angle) 
+%% åˆå§‹ç‰©ä½“é›¶å¡«å……å’Œæ”¯æŒåŸŸ
 size_pixel = size(I);
 N = size_pixel(1);
 oversamplingRatio = 3;
@@ -128,17 +128,17 @@ paddingy = round((newDimy-size(I,2))/2);%how many zeros to add
 initial_lens_field_pad = padarray(initial_lens_field,[paddingx paddingy]);
 initial_field_pad = padarray(initial_field,[paddingx paddingy]);
 
-%% OSSÖØ½¨£¬Ö§³ÖÓòÎª200*200µÄÕı·½ĞÎ£¬rec£¨2048*2048£©ÎªÑùÆ·¹ı²ÉÑùºóµÄ½á¹û
-%% erÖØ½¨½á¹ûÔÚÊµ¿Õ¼ä½øĞĞ¹ı²ÉÑù£¬½øĞĞÑÜÉäÍ¼Ïà¼Ó
-rec_modelimg = kcdi_real; %¹ı²ÉÑùºóµÄÎïÌåÄ£ĞÍ
-lens_modelimg = kcdi_lens_real; %¹ı²ÉÑùºóÑùÆ·ÃæÉÏµÄÍ¸¾µÄ£ĞÍ
+%% OSSé‡å»ºï¼Œæ”¯æŒåŸŸä¸º200*200çš„æ­£æ–¹å½¢ï¼Œrecï¼ˆ2048*2048ï¼‰ä¸ºæ ·å“è¿‡é‡‡æ ·åçš„ç»“æœ
+%% eré‡å»ºç»“æœåœ¨å®ç©ºé—´è¿›è¡Œè¿‡é‡‡æ ·ï¼Œè¿›è¡Œè¡å°„å›¾ç›¸åŠ 
+rec_modelimg = kcdi_real; %è¿‡é‡‡æ ·åçš„ç‰©ä½“æ¨¡å‹
+lens_modelimg = kcdi_lens_real; %è¿‡é‡‡æ ·åæ ·å“é¢ä¸Šçš„é€é•œæ¨¡å‹
 % rec_modelimg_diffraction = propTF(kcdi_real,L1,lambda,z2);
 % lens_modelimg_diffraction = propTF(kcdi_lens_real,L1,lambda,z2);
-% F2D_rec = abs(rec_modelimg_diffraction); %¹ı²ÉÑùºóµÄÎïÌåµÄÑÜÉä·ù¶È
-% F2D_lens = abs(lens_modelimg_diffraction); %¹ı²ÉÑùºóµÄÍ¸¾µµÄÑÜÉä·ù¶È
-F2D_rec = am_p; %¹ı²ÉÑùºóµÄÎïÌåµÄÑÜÉä·ù¶È
-F2D_lens = am_p_lens;%¹ı²ÉÑùºóµÄÍ¸¾µµÄÑÜÉä·ù¶È
-supp = [200,200]; %ÎïÌåµÄÖ§³ÖÓò´óĞ¡
+% F2D_rec = abs(rec_modelimg_diffraction); %è¿‡é‡‡æ ·åçš„ç‰©ä½“çš„è¡å°„å¹…åº¦
+% F2D_lens = abs(lens_modelimg_diffraction); %è¿‡é‡‡æ ·åçš„é€é•œçš„è¡å°„å¹…åº¦
+F2D_rec = am_p; %è¿‡é‡‡æ ·åçš„ç‰©ä½“çš„è¡å°„å¹…åº¦
+F2D_lens = am_p_lens;%è¿‡é‡‡æ ·åçš„é€é•œçš„è¡å°„å¹…åº¦
+supp = [200,200]; %ç‰©ä½“çš„æ”¯æŒåŸŸå¤§å°
 [Rsize,Csize] = size(I);
 Rcenter = ceil(Rsize/2);
 Ccenter = ceil(Csize/2);
@@ -151,9 +151,9 @@ beta = 0.9;
 showim = 1;
 hiofirst = 0;
 %%
-[mask_sample,RfacR_sample,RfacF_sample,rec]= OSS_samplecode5(F2D_rec,supp,iter,beta,showim,rec_modelimg,hiofirst,initial_diffraction);  
-[mask_lens,RfacR_lens,RfacF_lens,rec_lens]= OSS_lenscode5(F2D_lens,supp,iter,beta,showim,lens_modelimg,hiofirst,initial_lens_field);  
-%ÖØ½¨Ê±¼ä
+[mask_sample,RfacR_sample,RfacF_sample,rec]= OSS_samplecode4(F2D_rec,supp,iter,beta,showim,rec_modelimg,hiofirst,initial_diffraction);  
+[mask_lens,RfacR_lens,RfacF_lens,rec_lens]= OSS_lenscode4(F2D_lens,supp,iter,beta,showim,lens_modelimg,hiofirst,initial_lens_field);  
+%é‡å»ºæ—¶é—´
 reconstructionTime = toc;
 reconstructionTime = round(10*reconstructionTime)./10;
 fprintf('Fraunhoffer OSS: Reconstruction completed in %.12g seconds.\n\n',reconstructionTime);
@@ -162,11 +162,11 @@ rec_lens_dif = fft2(rec_lens);
 rec_dif = rec_sample_dif - rec_lens_dif;
 rec = ifft2(rec_dif);
 figure('color',[1 1 1]);imagesc(abs(rec));axis square;axis off;colormap('gray');
-% export_fig(gcf,'-eps','-r300','-painters','./ÖØ½¨½á¹û.eps');
+% export_fig(gcf,'-eps','-r300','-painters','./é‡å»ºç»“æœ.eps');
 rec = rec(Rcenter-half_Rsupport-1:Rcenter+half_Rsupport+1,Ccenter-half_Csupport-1:Ccenter+half_Csupport+1,:);
 figure('color',[1 1 1]);imagesc(abs(rec));axis square;axis off;colormap('gray');
-% export_fig(gcf,'-eps','-r300','-painters','./·Å´óµÄÖØ½¨½á¹û.eps');
-%% ÖØ½¨µÄÏàÎ»ºÍÔ­Í¼ÏàÎ»µÄ±È½Ï,´øÔëÉùÊ±¿É²»¿ª
+% export_fig(gcf,'-eps','-r300','-painters','./æ”¾å¤§çš„é‡å»ºç»“æœ.eps');
+%% é‡å»ºçš„ç›¸ä½å’ŒåŸå›¾ç›¸ä½çš„æ¯”è¾ƒ,å¸¦å™ªå£°æ—¶å¯ä¸å¼€
 % figure
 % subplot(1,2,1);plot(x1,unwrap(ph_p_orig(M/2+10,:)));xlabel('x(m)');ylabel('y(rad)');axis square;title('ccd free noise E(r) angle M/2+10')
 % subplot(1,2,2);plot(x1,unwrap(phase(rec_sample_dif(M/2+10,:))));xlabel('x(m)');ylabel('y(rad)');axis square;title('rec E(r) angle M/2+10')
